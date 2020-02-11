@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MiniMural
 {
     [DataContract]
-    public class StickyNote : BindableBase
+    public class StickyNote : BindableWidget
     {
         public StickyNote(string txt, System.Drawing.Color color)
         {

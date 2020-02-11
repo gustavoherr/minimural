@@ -9,6 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Grid x:Name="rootGrid" Width="Auto" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="widgetSelectionColumn" Width="116"/>
+                <ColumnDefinition x:Name="widgetsColumn" Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Background="#4C000000">
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

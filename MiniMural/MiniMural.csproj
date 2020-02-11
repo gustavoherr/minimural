@@ -119,12 +119,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BindableBase.cs" />
+    <Compile Include="BindableWidget.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomImage.cs" />
     <Compile Include="StickyNote.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MiniMural
 {
     [System.Runtime.Serialization.DataContract]
-    public abstract class BindableBase : INotifyPropertyChanged
+    public abstract class BindableWidget : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
