@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniMural
 {
-    public class RandomImage : BindableWidget
+    public class RandomImage : Widget
     {
         public RandomImage(int width, int height)
         {

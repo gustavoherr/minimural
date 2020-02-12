@@ -18,16 +18,16 @@ namespace MiniMural
 
         private void Initialize()
         {
-            mWidgets = new ObservableCollection<BindableWidget>();
+            mWidgets = new ObservableCollection<Widget>();
         }
 
-        private ObservableCollection<BindableWidget> mWidgets;
+        private ObservableCollection<Widget> mWidgets;
 
         /// <summary>
         /// Collection of widgets
         /// </summary>
         [DataMember]
-        public ObservableCollection<BindableWidget> Widgets => mWidgets;
+        public ObservableCollection<Widget> Widgets => mWidgets;
 
     }
 }
