@@ -32,19 +32,22 @@
                 Grid.Column="0"
                 Grid.Row="1"
                 Grid.ColumnSpan="3">
-                <localControls:WidgetsPanel 
-                    ItemsSource="{x:Bind ViewModel.Widgets}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <localControls:WidgetsCanvas DoubleTapped="WidgetsCanvas_DoubleTapped"></localControls:WidgetsCanvas>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <localControls:StickyNoteControl StickyNoteObject="{Binding}"></localControls:StickyNoteControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </localControls:WidgetsPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                    <localControls:WidgetsPanel Width="2000" Height="5000" 
+                        ItemsSource="{x:Bind ViewModel.Widgets}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <localControls:WidgetsCanvas DoubleTapped="WidgetsCanvas_DoubleTapped"></localControls:WidgetsCanvas>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!--https://docs.microsoft.com/answers/questions/309/switch-the-listview-datatemplate-from-one-data-tem.html-->
+                                <localControls:StickyNoteControl StickyNoteObject="{Binding}"></localControls:StickyNoteControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </localControls:WidgetsPanel>
+                </ScrollViewer>
             </Grid>
         </Grid>
     </Grid>
