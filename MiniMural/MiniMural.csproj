@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BindableBase.cs" />
+    <Compile Include="Controls\BooleanToVisibilityConverter.cs" />
     <Compile Include="Controls\IWidget.cs" />
     <Compile Include="Controls\RandomImageControl.xaml.cs">
       <DependentUpon>RandomImageControl.xaml</DependentUpon>
@@ -128,8 +129,6 @@
       <DependentUpon>StickyNoteControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\WidgetDataTemplateSelector.cs" />
-    <Compile Include="Controls\WidgetsCanvas.cs" />
-    <Compile Include="Controls\WidgetsPanel.cs" />
     <Compile Include="Controls\WidgetTypeEnum.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

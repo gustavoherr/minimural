@@ -25,7 +25,8 @@ namespace MiniMural
             InitializeComponent();
             ViewModel = new MainPageViewModel();
 
-            var sn = new StickyNote(DateTime.Now.ToString(), GetRandomColor()) { Left = 200, Top = 300 };
+            // initial items for test
+            var sn = new StickyNote(DateTime.Now.ToString(), GetRandomColor()) { Left = 200, Top = 400 };
             var ri = new RandomImage() { Left = 300, Top = 100 };
             
             ViewModel.Widgets.Add(sn);
@@ -36,7 +37,7 @@ namespace MiniMural
 
         private void WidgetsCanvas_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            var wc = sender as Controls.WidgetsCanvas;
+            var wc = sender as Canvas;
 
             if (ViewModel.WidgetTypeStickyNote)
             {

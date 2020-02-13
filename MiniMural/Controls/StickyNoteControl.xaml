@@ -9,11 +9,14 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <Control.Resources>
+        <local:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    </Control.Resources>
     <Grid Width="250" Height="80">
         <Grid.Background>
             <SolidColorBrush Color="{x:Bind DisplayColor}"></SolidColorBrush>
         </Grid.Background>
-        <Border BorderThickness="2" BorderBrush="DarkBlue" Visibility="{x:Bind DisplayBorder, Mode=TwoWay}"/>
+        <Border BorderThickness="2" BorderBrush="DarkBlue" Visibility="{x:Bind StickyNoteObject.Selected, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay}"/>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind DisplayText}"></TextBlock>
         <Grid.RenderTransform>
             <CompositeTransform x:Name="dragTransform"/>

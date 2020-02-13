@@ -43,7 +43,7 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="3">
                 <ScrollViewer ZoomMode="Enabled" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-                    <ItemsControl Width="2000" Height="5000" ItemsSource="{x:Bind ViewModel.Widgets}">
+                    <ItemsControl Width="6000" Height="9000" ItemsSource="{x:Bind ViewModel.Widgets}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Canvas DoubleTapped="WidgetsCanvas_DoubleTapped" Tapped="Canvas_Tapped" Background="White" />

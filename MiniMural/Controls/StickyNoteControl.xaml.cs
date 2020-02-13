@@ -38,7 +38,6 @@ namespace MiniMural.Controls
         {
             var snc = sender as StickyNoteControl;
             snc.StickyNoteObject.Selected = !snc.StickyNoteObject.Selected;
-            snc.DisplayBorder = snc.StickyNoteObject.Selected ? Visibility.Visible : Visibility.Collapsed;
             e.Handled = true;
         }
 
@@ -72,7 +71,6 @@ namespace MiniMural.Controls
             instance.DisplayText = note.Text;
             instance.DisplayColor = Windows.UI.ColorHelper.FromArgb(note.Color.A, note.Color.R, note.Color.G, note.Color.B);
             instance.Margin = new Thickness { Left = note.Left, Top = note.Top };
-            instance.DisplayBorder = note.Selected ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private string mDisplayText;
@@ -95,15 +93,6 @@ namespace MiniMural.Controls
                 SetProperty(ref mDisplayColor, value);
             }
         }
-
-        private Visibility mDisplayBorder;
-        public Visibility DisplayBorder
-        {
-            get { return mDisplayBorder; }
-            set
-            {
-                SetProperty(ref mDisplayBorder, value);
-            }
-        }
+        
     }
 }

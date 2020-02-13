@@ -39,7 +39,6 @@ namespace MiniMural.Controls
         {
             var ric = sender as RandomImageControl;
             ric.RandomImageObject.Selected = !ric.RandomImageObject.Selected;
-            ric.DisplayBorder = ric.RandomImageObject.Selected ? Visibility.Visible : Visibility.Collapsed;
             e.Handled = true;
         }
 
@@ -72,7 +71,6 @@ namespace MiniMural.Controls
             RandomImage img = ea.NewValue as RandomImage;
             instance.DisplayUrl = img.UrlImage;
             instance.Margin = new Thickness { Left = img.Left, Top = img.Top };
-            instance.DisplayBorder = img.Selected ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private string mDisplayUrl;
@@ -83,16 +81,6 @@ namespace MiniMural.Controls
             private set
             {
                 SetProperty(ref mDisplayUrl, value);
-            }
-        }
-
-        private Visibility mDisplayBorder;
-        public Visibility DisplayBorder
-        {
-            get { return mDisplayBorder; }
-            set
-            {
-                SetProperty(ref mDisplayBorder, value);
             }
         }
     }
