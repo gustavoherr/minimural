@@ -24,7 +24,12 @@ namespace MiniMural
         {
             InitializeComponent();
             ViewModel = new MainPageViewModel();
-            ViewModel.Widgets.Add(new StickyNote(DateTime.Now.ToString(), GetRandomColor()));
+
+            var sn = new StickyNote(DateTime.Now.ToString(), GetRandomColor()) { Left = 200, Top = 300 };
+            var ri = new RandomImage() { Left = 300, Top = 100 };
+            
+            ViewModel.Widgets.Add(sn);
+            ViewModel.Widgets.Add(ri);
         }
 
         public MainPageViewModel ViewModel { get; }
@@ -35,25 +40,38 @@ namespace MiniMural
 
             if (ViewModel.WidgetTypeStickyNote)
             {
-                AddStickyNoteItem(wc, e.GetPosition(wc));
+                AddStickyNoteItem(e.GetPosition(wc));
             }
             else if (ViewModel.WidgetTypeRandomImage)
             {
-                AddRandomImageItem(wc, e.GetPosition(wc));
+                AddRandomImageItem(e.GetPosition(wc));
             }
+            e.Handled = true;
         }
 
-        private void AddStickyNoteItem(Controls.WidgetsCanvas canvas, Point position)
+        private void Canvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //var sn = new Controls.StickyNoteControl();
-            //sn.Margin = new Thickness(position.X, position.Y, 0, 0);
-            //sn.StickyNoteObject = new StickyNote(DateTime.Now.ToString(), GetRandomColor());
-            //canvas.WidgetControls.Add(sn);
+            foreach (var widget in ViewModel.Widgets)
+            {
+                widget.Selected = false;
+            }
+            e.Handled = true;
         }
 
-        private void AddRandomImageItem(Controls.WidgetsCanvas canvas, Point position)
+        private void AddStickyNoteItem(Point position)
         {
-            
+            var sn = new StickyNote(DateTime.Now.ToString(), GetRandomColor());
+            sn.Left = position.X;
+            sn.Top = position.Y;
+            ViewModel.Widgets.Add(sn);
+        }
+
+        private void AddRandomImageItem(Point position)
+        {
+            var ri = new RandomImage();
+            ri.Left = position.X;
+            ri.Top = position.Y;
+            ViewModel.Widgets.Add(ri);
         }
 
         private Random mRandomGenerator = new Random(DateTime.Now.Second);
@@ -62,5 +80,16 @@ namespace MiniMural
             var colors = new[] { System.Drawing.Color.LightBlue, System.Drawing.Color.Yellow, System.Drawing.Color.LightSalmon, System.Drawing.Color.LightGreen, System.Drawing.Color.LightGray };
             return colors[mRandomGenerator.Next(0, 5)];
         }
+
+        private void ButtonDeleteSelected_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = ViewModel.Widgets.Where(w => w.Selected).ToList();
+            foreach (var sw in selected)
+            {
+                ViewModel.Widgets.Remove(sw);
+            }
+        }
+
+        
     }
 }

@@ -8,9 +8,10 @@ namespace MiniMural
 {
     public class RandomImage : Widget
     {
-        public RandomImage(int width, int height)
+        public RandomImage()
         {
-            // TODO: get url image from https://picsum.photos/{height}/{width}
+            // get url image from https://picsum.photos/{height}/{width}
+            UrlImage = "https://picsum.photos/300/200?nocache=" + DateTime.Now.Ticks;
         }
 
         private string mUrlImage;

@@ -9,6 +9,15 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="stickyNoteDataTemplate" x:DataType="local:StickyNote">
+            <localControls:StickyNoteControl StickyNoteObject="{Binding}"></localControls:StickyNoteControl>
+        </DataTemplate>
+        <DataTemplate x:Key="randomImageDataTemplate" x:DataType="local:RandomImage">
+            <localControls:RandomImageControl RandomImageObject="{Binding}"></localControls:RandomImageControl>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid>
         <Grid x:Name="rootGrid" Width="Auto" Height="Auto">
             <Grid.ColumnDefinitions>
@@ -17,6 +26,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Grid
                 Grid.Column="0"
@@ -32,23 +42,30 @@
                 Grid.Column="0"
                 Grid.Row="1"
                 Grid.ColumnSpan="3">
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-                    <localControls:WidgetsPanel Width="2000" Height="5000" 
-                        ItemsSource="{x:Bind ViewModel.Widgets}">
+                <ScrollViewer ZoomMode="Enabled" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                    <ItemsControl Width="2000" Height="5000" ItemsSource="{x:Bind ViewModel.Widgets}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <localControls:WidgetsCanvas DoubleTapped="WidgetsCanvas_DoubleTapped"></localControls:WidgetsCanvas>
+                                <Canvas DoubleTapped="WidgetsCanvas_DoubleTapped" Tapped="Canvas_Tapped" Background="White" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <!--https://docs.microsoft.com/answers/questions/309/switch-the-listview-datatemplate-from-one-data-tem.html-->
-                                <localControls:StickyNoteControl StickyNoteObject="{Binding}"></localControls:StickyNoteControl>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </localControls:WidgetsPanel>
+                        <ItemsControl.ItemTemplateSelector>
+                            <localControls:WidgetDataTemplateSelector StickNoteTemplate="{StaticResource stickyNoteDataTemplate}" RandomImageTemplate="{StaticResource randomImageDataTemplate}"></localControls:WidgetDataTemplateSelector>
+                        </ItemsControl.ItemTemplateSelector>
+                    </ItemsControl>
                 </ScrollViewer>
+            </Grid>
+            <Grid
+                Grid.Column="0"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Background="#4C000000">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Delete Selected" Click="ButtonDeleteSelected_Click"></Button>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
+
+
 </Page>

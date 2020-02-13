@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MiniMural.Controls.StickyNoteControl"
+    x:Class="MiniMural.Controls.RandomImageControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MiniMural.Controls"
@@ -9,12 +9,17 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid Width="250" Height="80">
+    <Grid Width="300" Height="250">
         <Grid.Background>
-            <SolidColorBrush Color="{x:Bind DisplayColor}"></SolidColorBrush>
+            <SolidColorBrush Color="LightGray"></SolidColorBrush>
         </Grid.Background>
         <Border BorderThickness="2" BorderBrush="DarkBlue" Visibility="{x:Bind DisplayBorder, Mode=TwoWay}"/>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind DisplayText}"></TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind DisplayUrl}"></TextBlock>
+        <Image>
+            <Image.Source>
+                <BitmapImage UriSource="{x:Bind DisplayUrl}" />
+            </Image.Source>
+        </Image>
         <Grid.RenderTransform>
             <CompositeTransform x:Name="dragTransform"/>
         </Grid.RenderTransform>

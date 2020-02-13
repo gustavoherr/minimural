@@ -8,5 +8,17 @@ namespace MiniMural
 {
     public class Widget : BindableBase
     {
+        public double Left { get; set; }
+        public double Top { get; set; }
+
+        private bool mSelected;
+        public bool Selected
+        {
+            get { return mSelected; }
+            set
+            {
+                SetProperty(ref mSelected, value, nameof(Selected));
+            }
+        }
     }
 }

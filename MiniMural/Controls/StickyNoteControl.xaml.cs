@@ -23,13 +23,23 @@ namespace MiniMural.Controls
         public StickyNoteControl()
         {
             this.InitializeComponent();
-            ManipulationMode = ManipulationModes.All;
+            ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
             Tapped += StickyNoteControl_Tapped;
+            ManipulationDelta += StickyNoteControl_ManipulationDelta;
+        }
+
+        private void StickyNoteControl_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            dragTransform.TranslateX += e.Delta.Translation.X;
+            dragTransform.TranslateY += e.Delta.Translation.Y;
         }
 
         private void StickyNoteControl_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            // TODO: add or remove from parent canvas selected widgets collection
+            var snc = sender as StickyNoteControl;
+            snc.StickyNoteObject.Selected = !snc.StickyNoteObject.Selected;
+            snc.DisplayBorder = snc.StickyNoteObject.Selected ? Visibility.Visible : Visibility.Collapsed;
+            e.Handled = true;
         }
 
         public WidgetTypeEnum WidgetType => WidgetTypeEnum.StickyNote;
@@ -61,16 +71,18 @@ namespace MiniMural.Controls
             StickyNote note = ea.NewValue as StickyNote;
             instance.DisplayText = note.Text;
             instance.DisplayColor = Windows.UI.ColorHelper.FromArgb(note.Color.A, note.Color.R, note.Color.G, note.Color.B);
+            instance.Margin = new Thickness { Left = note.Left, Top = note.Top };
+            instance.DisplayBorder = note.Selected ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private string mDisplayName;
+        private string mDisplayText;
         public string DisplayText
         {
-            get { return mDisplayName; }
+            get { return mDisplayText; }
 
             private set
             {
-                SetProperty(ref mDisplayName, value);
+                SetProperty(ref mDisplayText, value);
             }
         }
 
@@ -81,6 +93,16 @@ namespace MiniMural.Controls
             private set
             {
                 SetProperty(ref mDisplayColor, value);
+            }
+        }
+
+        private Visibility mDisplayBorder;
+        public Visibility DisplayBorder
+        {
+            get { return mDisplayBorder; }
+            set
+            {
+                SetProperty(ref mDisplayBorder, value);
             }
         }
     }
